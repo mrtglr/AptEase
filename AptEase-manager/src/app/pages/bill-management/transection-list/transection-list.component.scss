@@ -1,0 +1,14 @@
+:host ::ng-deep {
+
+    ng2-smart-table .ng2-smart-actions ng2-st-tbody-edit-delete,
+    ng2-smart-table .ng2-smart-actions ng2-st-tbody-create-cancel,
+    ng2-smart-table .ng2-smart-actions ng2-st-actions {
+        display: flex;
+        height: 0px;
+    }
+
+    ng2-st-tbody-custom {
+        display: flex;
+        justify-content: space-around;
+    }
+}

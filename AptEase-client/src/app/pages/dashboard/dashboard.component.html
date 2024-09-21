@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-xxl-9">
+    <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+      <nb-card-header>Total Payment Needed</nb-card-header>
+      <nb-card-body *ngIf="show">
+        <ngx-d3-pie></ngx-d3-pie>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-xxl-3">
+    <ngx-progress-section></ngx-progress-section>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xxl-6">
+    <nb-card class="list-card" size="medium">
+      <nb-card-header>Announcements</nb-card-header>
+      <nb-list>
+        <nb-list-item *ngFor="let announcement of announcements">
+          <span style="color: rgb(0, 110, 255); font-weight: bold;">{{ announcement.header }}</span> {{ ': ' +
+          announcement.body }}
+        </nb-list-item>
+      </nb-list>
+    </nb-card>
+  </div>
+  <div class="col-xxl-6">
+    <nb-card class="list-card" size="medium">
+      <nb-card-header>Users</nb-card-header>
+      <nb-list>
+        <nb-list-item *ngFor="let user of users">
+          <nb-user [name]="user.fullName" [title]="'No: ' + user.doorNumber">
+          </nb-user>
+        </nb-list-item>
+      </nb-list>
+    </nb-card>
+  </div>
+</div>

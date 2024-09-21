@@ -1,0 +1,55 @@
+<div class="row" style="display: flex; justify-content: center;">
+    <div class="col-lg-6">
+        <nb-card>
+            <nb-card-header>
+                Register New User
+            </nb-card-header>
+            <nb-card-body>
+                <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input class="form-control" #username="ngModel" name="username"
+                            [(ngModel)]="registerModel.username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input class="form-control" type="email" #email="ngModel" name="email"
+                            [(ngModel)]="registerModel.email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input class="form-control" #fullname="ngModel" name="fullname"
+                            [(ngModel)]="registerModel.fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="05055055555" maxlength="11"
+                            class="form-control" #phoneNumber="ngModel" name="phoneNumber"
+                            [(ngModel)]="registerModel.phoneNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Door Number</label>
+                        <input class="form-control" #doorNumber="ngModel" name="doorNumber" maxlength="2"
+                            [(ngModel)]="registerModel.doorNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" #password="ngModel" name="password"
+                            [(ngModel)]="registerModel.password" required>
+                    </div>
+                    <div class="form-group">
+                        <nb-checkbox (change)="checkValue($event)">Register this user with admin
+                            role</nb-checkbox>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-8 offset-md-2">
+                            <button nbButton [nbSpinner]="showLoading" nbSpinnerStatus="primary" nbSpinnerSize="large"
+                                nbSpinnerMessage="" fullWidth status="primary" size="large" type="submit"
+                                [disabled]="form.invalid">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

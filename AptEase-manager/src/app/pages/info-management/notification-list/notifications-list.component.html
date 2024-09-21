@@ -1,0 +1,23 @@
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary" class="list-card" size="small">
+    <nb-card-header *ngIf="data.length > 0">
+        Notifications
+    </nb-card-header>
+    <nb-card-header *ngIf="data.length == 0">
+        You got no new notification.
+    </nb-card-header>
+
+    <nb-card-body *ngIf="data.length > 0">
+        <nb-list>
+            <nb-list-item *ngFor="let entity of data">
+                <p>
+                    <button *ngIf="!entity.read" (click)="redirectTo(entity.pageLink, entity)" status="info" nbButton
+                        ghost>{{ entity.header }}: </button>
+                    <button *ngIf="entity.read" (click)="redirectTo(entity.pageLink, entity)" status="info" nbButton
+                        ghost style="color: rgb(133, 197, 226);">{{ entity.header }}: </button>
+                    {{ entity.body }} <span style="font-style: italic; color: rgb(0, 174, 255);">{{
+                        helper.formatDate(entity.createDate) }}</span>
+                </p>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>

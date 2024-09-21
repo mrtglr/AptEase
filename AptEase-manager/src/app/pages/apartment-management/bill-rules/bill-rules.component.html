@@ -1,0 +1,62 @@
+<div *ngIf="billPaymentRule">
+    <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+        <nb-card-header>Current Payment Rule</nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="">Bill Amount</label>
+                    <input class="form-control" type="text" nbInput fullWidth shape="semi-round" disabled
+                        value="{{billPaymentRule.billAmount}}">
+                    <br>
+                    <label for="">Bill Cut-Off Date</label>
+                    <input class="form-control" type="text" nbInput fullWidth shape="semi-round" disabled
+                        value="{{billPaymentRule.cutOffDateToString}}">
+                    <br>
+                    <label for="">Bill Due Date</label>
+                    <input class="form-control" type="text" nbInput fullWidth shape="semi-round" disabled
+                        value="{{billPaymentRule.dueDateToString}}">
+                    <br>
+                    <label for="">Rule Last Modify Date</label>
+                    <input class="form-control" type="text" nbInput fullWidth shape="semi-round" disabled
+                        value="{{billPaymentRule.modifyDateToString}}">
+                </div>
+                <div class="col-lg-6">
+                    <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+                        <nb-card-header>Edit Payment Rule</nb-card-header>
+                        <nb-card-body>
+                            <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)">
+                                <div class="form-group">
+                                    <label>New Bill Amount</label>
+                                    <input class="form-control" #billAmount="ngModel" name="billAmount"
+                                        [(ngModel)]="billRuleUpdate.billAmount" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>New Bill Cut-Off Date</label>
+                                    <input class="form-control" type="datetime-local" #cutOffDate="ngModel"
+                                        name="cutOffDate" [(ngModel)]="billRuleUpdate.cutOffDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>New Bill Due Date</label>
+                                    <input class="form-control" type="datetime-local" #dueDate="ngModel" name="dueDate"
+                                        [(ngModel)]="billRuleUpdate.dueDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <nb-checkbox (change)="checkValue($event)" status="danger" required>Are you
+                                        approving to change bill payment rule</nb-checkbox>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-8 offset-md-2">
+                                        <button nbButton [nbSpinner]="showLoading" nbSpinnerStatus="primary"
+                                            nbSpinnerSize="large" nbSpinnerMessage="" fullWidth status="primary"
+                                            size="large" type="submit" [disabled]="form.invalid">Update Bill
+                                            Rule</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</div>

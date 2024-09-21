@@ -1,0 +1,24 @@
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <nb-card-header>
+        <div class="row">
+            <div class="col-md-10">
+                My Bills
+            </div>
+        </div>
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="billTableSettings" [source]="billData" (deleteConfirm)="sendToApproval($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <nb-card-header>
+        My Transections
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="transectionTableSettings" [source]="transectiondata">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

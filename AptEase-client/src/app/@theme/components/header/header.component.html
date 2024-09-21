@@ -1,0 +1,22 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <a class="logo" href="#" (click)="navigateHome()"> <img src="https://firebasestorage.googleapis.com/v0/b/img-str-demo.appspot.com/o/logo.png?alt=media&token=fe4f509f-a21e-47f9-a4b4-13bd10a20bf4" alt="" style="width: 50px;">
+      AptEase</a>
+  </div>
+</div>
+
+<div class="header-container">
+  <nb-actions size="small">
+
+    <nb-action class="control-item" icon="bell-outline" (click)="openNotifications()"></nb-action>
+    <nb-action class="user-action" *nbIsGranted="['view', 'user']" (click)="openUserProfile()">
+      <nb-user [onlyPicture]="userPictureOnly" [name]="user?.fullName"
+        [picture]="user?.picture">
+      </nb-user>
+    </nb-action>
+    <nb-action class="control-item" icon="log-out-outline" (click)="logout()"></nb-action>
+  </nb-actions>
+</div>

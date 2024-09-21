@@ -1,0 +1,44 @@
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <nb-card-header>
+        <div class="row">
+            <div class="col-md-10">
+                Create Announcement
+            </div>
+        </div>
+    </nb-card-header>
+
+    <nb-card-body>
+        <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)">
+            <div class="form-group">
+                <label>Title</label>
+                <input class="form-control" #header="ngModel" name="header" [(ngModel)]="announcementModel.header" required>
+            </div>
+            <div class="form-group">
+                <label>Detail</label>
+                <textarea class="form-control" type="text" #body="ngModel" name="body"
+                    [(ngModel)]="announcementModel.body" required></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3 offset-md-9">
+                    <button nbButton [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large"
+                        nbSpinnerMessage="" fullWidth status="primary" size="large" type="submit"
+                        [disabled]="form.invalid">Create</button>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <nb-card-header>
+        <div class="row">
+            <div class="col-md-10">
+                Announcements
+            </div>
+        </div>
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="data" (deleteConfirm)="onDelete($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

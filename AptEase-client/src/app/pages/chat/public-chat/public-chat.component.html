@@ -1,0 +1,17 @@
+<nb-card>
+    <nb-card-header>
+        Public Chat
+    </nb-card-header>
+    <nb-card-body>
+        <nb-chat title="You are in the apartment chat now" size="large" status="primary">
+            <nb-chat-message *ngFor="let msg of msgInboxArray"
+             [message]="msg.messageText"
+             [reply]="msg.reply"         
+             [sender]="msg.applicationUserChatName + ' /'" 
+             [date]="msg.messageDate">
+            </nb-chat-message>
+            <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true">
+            </nb-chat-form>
+        </nb-chat>
+    </nb-card-body>
+</nb-card>

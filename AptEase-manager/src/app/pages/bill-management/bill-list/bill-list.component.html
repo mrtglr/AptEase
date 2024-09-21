@@ -1,0 +1,58 @@
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <nb-card-header>
+        <div class="row">
+            <div class="col-md-10">
+                Create New Bill
+            </div>
+        </div>
+    </nb-card-header>
+
+    <nb-card-body>
+        <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Bill Description</label>
+                        <input class="form-control" #billDescription="ngModel" name="billDescription"
+                            [(ngModel)]="bill.billDescription" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Bill Amount</label>
+                        <input class="form-control" #billAmount="ngModel" name="billAmount"
+                            [(ngModel)]="bill.billAmount" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <input class="form-control" type="datetime-local" #dueDate="ngModel" name="dueDate"
+                            [(ngModel)]="bill.dueDate" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3 offset-md-9">
+                    <button nbButton [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large"
+                        nbSpinnerMessage="" fullWidth status="primary" size="large" type="submit"
+                        [disabled]="form.invalid">Create</button>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <nb-card-header>
+        <div class="row">
+            <div class="col-md-10">
+                Bill List
+            </div>
+        </div>
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="data" (deleteConfirm)="onDelete($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

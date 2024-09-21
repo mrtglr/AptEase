@@ -1,0 +1,97 @@
+<div *ngIf="user && !changePassword" class="row" style="display: flex; justify-content: center;">
+    <div class="col-lg-8">
+        <nb-card>
+            <nb-card-header>
+                Edit Profile
+            </nb-card-header>
+            <nb-card-body>
+                <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="updateUserProfile(form)">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input class="form-control" #username="ngModel" name="username" [(ngModel)]="user.userName"
+                            disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input class="form-control" #fullname="ngModel" name="fullname" [(ngModel)]="user.fullName"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input class="form-control" type="email" #email="ngModel" name="email" [(ngModel)]="user.email"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input class="form-control" #phoneNumber="ngModel" name="phoneNumber"
+                            [(ngModel)]="user.phoneNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Door Number</label>
+                        <input class="form-control" #doorNumber="ngModel" name="doorNumber"
+                            [(ngModel)]="user.doorNumber" disabled>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4 offset-md-1">
+                            <button (click)="showChangePasswordTab()" status="info" nbButton ghost>
+                                Change password
+                            </button>
+                        </div>
+                        <div class="form-group col-md-4 offset-md-3">
+                            <button nbButton [nbSpinner]="showLoading" nbSpinnerStatus="primary" nbSpinnerSize="large"
+                                nbSpinnerMessage="" fullWidth status="primary" size="large" type="submit"
+                                [disabled]="form.invalid">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+
+<div *ngIf="user && changePassword" class="row" style="display: flex; justify-content: center;">
+    <div class="col-lg-8">
+        <nb-card>
+            <nb-card-header>
+                Change Password
+            </nb-card-header>
+            <nb-card-body>
+                <form #form='ngForm' id="passwordResetForm" class="mb-4" autocomplete="off"
+                    (submit)="updatePassword(form)">
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" class="form-control" #currentPassword="ngModel" name="currentPassword"
+                            [(ngModel)]="updatePasswordModel.currentPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" class="form-control" #newPassword="ngModel" name="newPassword"
+                            pattern="(?=.*\d)(?=.*[^\w\s]).{6,}" [(ngModel)]="updatePasswordModel.newPassword"
+                            nbTooltip="Password must contain at least 6 characters, 1 digit, and 1 non-alphanumeric character and must be different from your current password"
+                            nbTooltipPlacement="top" nbTooltipStatus="primary" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" class="form-control" #confirmPassword="ngModel" name="confirmPassword"
+                            pattern="(?=.*\d)(?=.*[^\w\s]).{6,}" [(ngModel)]="updatePasswordModel.confirmPassword"
+                            required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4 offset-md-1">
+                            <button (click)="hideChangePasswordTab()" status="info" nbButton ghost>
+                                Back to profile edit
+                            </button>
+                        </div>
+                        <div class="form-group col-md-4 offset-md-3">
+                            <button nbButton [nbSpinner]="showLoading" nbSpinnerStatus="primary" nbSpinnerSize="large"
+                                nbSpinnerMessage="" fullWidth status="primary" size="large" type="submit"
+                                [disabled]="form.invalid 
+                                    || updatePasswordModel.newPassword != updatePasswordModel.confirmPassword 
+                                    || updatePasswordModel.currentPassword == updatePasswordModel.newPassword">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
